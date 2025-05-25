@@ -1,46 +1,110 @@
-# Getting Started with Create React App
+Task Management Frontend Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This document provides instructions for setting up, running, and developing the Task Management Frontend project. This is a React application created with Create React App that interfaces with a Task Management API.
 
-## Available Scripts
+Before you begin, ensure you have the following installed on your system:
 
-In the project directory, you can run:
+- [Node.js](https://nodejs.org/) (v14 or higher recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- Git
 
-### `npm start`
+1. Clone the Repository
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2. Install Dependencies
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Install all required packages by running:
 
-### `npm test`
+npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This will install all dependencies defined in the package.json file, including:
 
-### `npm run build`
+- React and React DOM
+- Axios (for API requests)
+- TailwindCSS (for styling)
+- TypeScript
+- Other project dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Configure Environment Variables
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Create a .env file in the root directory to configure the API URL:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+REACT_APP_API_URL=https://localhost:5001/api
+Adjust the URL if your backend API is running on a different host or port.
 
-### `npm run eject`
+4. Start the Development Server
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To run the application in development mode:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+npm start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This will:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Start the development server
+- Open [http://localhost:3000](http://localhost:3000) in your default browser
+- Enable hot reloading (changes will automatically refresh the page)
 
-## Learn More
+## Build for Production
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+When you're ready to deploy the application, create a production build:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+npm run build
+
+This generates optimized production files in the build directory that can be deployed to any hosting service.
+
+Available Scripts
+
+The project includes several npm scripts:
+
+- `npm start` - Starts the development server
+- `npm run build` - Creates a production build
+- `npm run eject` - Ejects from Create React App (advanced, one-way operation)
+
+## Project Structure
+
+task-management-frontend/
+├── public/ # Static files (HTML, favicon, etc.)
+├── src/ # Source code
+│ ├── assets/ # Images, fonts, etc.
+│ ├── components/ # Reusable React components
+│ │ ├── common/ # Shared UI components (Button, Input, etc.)
+│ │ └── task/ # Task-specific components
+│ ├── context/ # React context providers
+│ ├── hooks/ # Custom React hooks
+│ ├── models/ # TypeScript interfaces and enums
+│ ├── pages/ # Page components
+│ ├── services/ # API and other services
+│ └── utils/ # Utility functions
+├── .env # Environment variables
+├── package.json # Project dependencies and scripts
+└── tailwind.config.js # TailwindCSS configuration
+
+## API Configuration
+
+The application uses Axios for API requests. The API client is configured in api.ts and includes:
+
+- Base URL configuration
+- Request/response interceptors
+- Error handling
+
+## Development Notes
+
+- TypeScript is used for type safety throughout the project
+- TailwindCSS is used for styling
+
+## Troubleshooting
+
+### API Connection Issues
+
+If you see network errors:
+
+1. Ensure your backend API is running
+2. Check that the `REACT_APP_API_URL` in your .env file points to the correct URL
+3. Verify CORS is properly configured on the backend to allow requests from `http://localhost:3000`
+
+### Package Installation Problems
+
+If you encounter issues during `npm install`:
+
+1. Delete the node_modules directory and package-lock.json file
+2. Run `npm cache clean --force`
+3. Run `npm install` again
